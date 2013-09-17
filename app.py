@@ -2,6 +2,7 @@ import datetime
 import database
 from dateutil.relativedelta import relativedelta
 import calendar
+import os
 from flask import Flask, render_template, redirect, url_for
 
 
@@ -57,4 +58,5 @@ def archive_month(year, month):
                             today=today)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ['PORT']) if 'PORT' in os.environ else None
+    app.run(debug=True, port=port)

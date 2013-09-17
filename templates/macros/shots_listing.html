@@ -1,21 +1,21 @@
 {% from 'macros/shot_box.html' import shot_box %}
 
-{%- macro shots_listing(shots, big_shots = 6) %}
-    <div class='shots'>
-    {%- for shot in shots %}
-        {% set i = loop.index0 %}
-        {% set is_big = loop.index0 < big_shots %}
-        {% set row_count = 3 if is_big else 6 %}
+{%- macro shots_listing(shots, big_shots = 6) -%}
+<div class='shots'>
+{%- for shot in shots -%}
+    {% set i = loop.index0 %}
+    {% set is_big = loop.index0 < big_shots %}
+    {% set row_count = 3 if is_big else 6 %}
 
-        {%- if (i-big_shots) % row_count == 0 %}
-          <div class='row'>
-        {%- endif %}
+    {%- if (i-big_shots) % row_count == 0 -%}
+        <div class='row'>
+    {%- endif -%}
 
-        {{ shot_box(shot, is_big, row_count) }}
+    {{ shot_box(shot, is_big, row_count) }}
 
-        {%- if (i-big_shots) % row_count == row_count-1 or i+1 == (shots|length) %}
-            <!-- // row --></div>
-        {%- endif %}
-    {%- endfor %}
-    </div><!-- // shots -->
-{%- endmacro %}
+    {%- if (i-big_shots) % row_count == row_count-1 or i+1 == (shots|length) %}
+        </div><!-- // row -->
+    {%- endif -%}
+{%- endfor -%}
+</div><!-- // shots -->
+{%- endmacro -%}
