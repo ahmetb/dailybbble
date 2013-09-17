@@ -1,22 +1,30 @@
 {% extends 'layout.html' %}
 
+{%- block title -%}
+    Popular shots of {{day.strftime('%d %B %Y')}}
+    on Dribbble
+{%- endblock -%}
+
 {% block content %}
 <div class='day'>
         <h3>
             <i class='glyphicon glyphicon-time'></i> Popular shots of <strong>
-                <time datetime='{{day}}'>{{day.strftime('%A, %B %d %Y')}}</time>
+                <time datetime='{{day}}' class='day'>
+                    {{day.strftime('%A, %d')}}
+                    <a href="{{url_for('archive_month', year=day.year, month=day.month)}}">
+                        {{day.strftime('%B %Y')}}</a>
+                </time>
             </strong> on Dribbble
         </h3>
 
         {{ shots_listing(shots) }}
 
         <div class='nav'>
-            <p class="text-left">
-                <a href="{{url_for('archive_month', year=day.year, month=day.month)}}">
-                <i class='glyphicon glyphicon-backward'></i>
-                Popular for <time datetime='{{day}}'>{{day.strftime('%b %Y')}}</time>
+            <a class='btn btn-default btn-lg btn-primary pull-left'
+                href="{{url_for('archive_month', year=day.year, month=day.month)}}">
+                <i class='glyphicon glyphicon-arrow-left'></i>
+                Popular shots for <time datetime='{{day}}'>{{day.strftime('%b %Y')}}</time>
             </a>
-            </p>
         </div><!-- // nav -->
 </div>
 {% endblock %}

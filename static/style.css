@@ -1,6 +1,6 @@
 body {
     font-weight: 200;
-    padding-top: 3em;
+    padding-top: 1em;
     padding-bottom: 5em;
 }
 
@@ -12,13 +12,65 @@ h2, h3, h4, h5, h6 {
     margin-bottom: 1em;
 }
 
-.day {
-    padding-top: 1.5em;
+.header a:hover {
+    text-decoration: none;
 }
 
-.shot {
-    margin: 2em auto 0 auto;
+time.day a {
+    color: inherit;
+}
 
+
+.shot {
+    margin: 2em auto 0.5em auto;
+}
+
+.shot .meta {
+    margin-top: 6px;
+    color: #999;
+    font-size: 85%;
+}
+
+.shot-small .artist {
+    display: none;
+}
+
+.shot-small .meta {
+    font-size: 80%;
+}
+
+.shot .meta a {
+    color: #444;
+}
+
+.shot .avatar {
+    width: 16px;
+    margin-right: 4px;
+}
+
+.meta .glyphicon {
+    margin-left: 10px;
+    margin-right: 4px;
+    color: #ccc;
+}
+
+.calendar {
+    margin-top: 3em;
+    max-width: 480px;
+    border: 0; /* override: bootstrap adding border on small devices */
+}
+
+.calendar .day {
+    font-size: 200%;
+    font-weight: lighter;
+}
+
+.calendar .day.disabled a {
+    color: #ccc;
+}
+
+.calendar .day a:hover {
+    text-decoration: none;
 }
 
 .footer {

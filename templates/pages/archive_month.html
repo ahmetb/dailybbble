@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{%- block title -%}
+    Dribbble Populars archive {{date.strftime('%B %Y')}}
+{%- endblock -%}
+
+{% block content %}
+<div class='month'>
+        <h3>
+            <i class='glyphicon glyphicon-time'></i> Time-travel to a day from <strong>
+                <time datetime='{{date}}'>{{date.strftime('%B %Y')}}</time>
+            </strong> on Dribbble:
+        </h3>
+
+        
+        <div class="calendar table-responsive clearfix">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class='text-center'>Mon</th>
+                        <th class='text-center'>Tue</th>
+                        <th class='text-center'>Wed</th>
+                        <th class='text-center'>Thu</th>
+                        <th class='text-center'>Fri</th>
+                        <th class='text-center'>Sat</th>
+                        <th class='text-center'>Sun</th>
+                    </tr>
+                </thead>
+                <tbody>
+            {%- for day in days -%}
+                {% set weekday = day[1] %}
+                {% set d = day[0] %}
+                {% set disabled = (date.year == today.year and date.month == today.month and d> today.day) %}
+
+                {%- if loop.first or weekday == 0 %}
+                    <tr>
+                {%- endif -%}
+
+                <td class='day text-center {%if disabled -%}disabled{%- endif %}'>
+                    {%- if d != 0 -%}
+                    <a href="{{url_for('archive_day',
+                                year=date.year,
+                                month=date.month,
+                                day=d)}}">
+                    {{d}}
+                    </a>
+                    {%- endif -%}
+                </td>
+
+                {%- if loop.last or weekday == 6 %}
+                    </tr><!-- // row -->
+                {%- endif %}
+            {%- endfor -%}
+                </tbody>
+            </table>
+
+            <div>
+            {%- if prev -%}
+                <a class='btn btn-default btn-lg btn-success pull-left {%if prev_disabled %}disabled{% endif %}'
+                    href="{{url_for('archive_month', year=prev.year, month=prev.month)}}">
+                    <i class='glyphicon glyphicon-arrow-left'></i>
+                    <nobr><time datetime='{{prev}}'>{{prev.strftime('%B %Y')}}</time></nobr>
+                </a>
+            {%- endif -%}
+
+            {%- if next -%}
+                <a class='btn btn-default btn-lg btn-success pull-right {%if next_disabled %}disabled{% endif %}'
+                    href="{{url_for('archive_month', year=next.year, month=next.month)}}">
+                    <nobr><time datetime='{{next}}'>{{next.strftime('%B %Y')}}</time></nobr>
+                    <i class='glyphicon glyphicon-arrow-right'></i>
+                </a>
+            {%- endif -%}
+            </div><!-- // div[none] -->
+        </div> <!-- // calendar -->
+
+</div> <!-- //month -->
+{% endblock %}
