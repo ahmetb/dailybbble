@@ -59,4 +59,5 @@ def archive_month(year, month):
 
 if __name__ == '__main__':
     port = int(os.environ['PORT']) if 'PORT' in os.environ else None
-    app.run(debug=True, port=port)
+    debug = True if not port else False
+    app.run(port=port, debug=debug)

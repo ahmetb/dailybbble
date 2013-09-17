@@ -31,19 +31,22 @@
                 {% set weekday = day[1] %}
                 {% set d = day[0] %}
                 {% set disabled = (date.year == today.year and date.month == today.month and d> today.day) %}
+                {% set is_today = (date.year == today.year and date.month == today.month and d == today.day) %}
 
                 {%- if loop.first or weekday == 0 %}
                     <tr>
                 {%- endif -%}
 
-                <td class='day text-center {%if disabled -%}disabled{%- endif %}'>
+                <td class='day text-center {%if disabled -%}disabled{%- endif -%} {%-if is_today -%}today{%- endif -%}'>
                     {%- if d != 0 -%}
+                    <div class='wrapper'>
                     <a href="{{url_for('archive_day',
                                 year=date.year,
                                 month=date.month,
                                 day=d)}}">
                     {{d}}
                     </a>
+                    </div><!-- // wrapper -->
                     {%- endif -%}
                 </td>
 
