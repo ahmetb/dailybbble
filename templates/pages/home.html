@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <p class='lead'>
+        <br/>Browse archives of popular shots on <a href="http://dribbble.com">Dribbble</a>
+        on a particular day or month. Use <a href="#">API</a> to retrieve data.
+    </p>
+
+    <div class='day'>
+        <h3>
+            <a href="{{url_for('archive_day',
+                                year=today.year,
+                                month=today.month,
+                                day=today.day)}}">
+                Populars of Sep 16, 2013 &rarr;
+            </a>
+        </h3>
+
+        {{ shots_listing(today_popular) }}
+    </div> <!-- // day -->
+{% endblock %}

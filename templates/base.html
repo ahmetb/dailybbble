@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'style.css')}}" />
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class='container'>
+            {% block header %}
+                <!-- Filled by layout.html -->
+            {% endblock %}
+            
+            {% block body %}
+                <!-- Filled by layout.html -->
+            {% endblock %}
+
+            {% block footer %}
+                <!-- Filled by layout.html -->
+            {% endblock %}
+        </div>
+    </body>
+</html>

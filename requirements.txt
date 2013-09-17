@@ -1,0 +1,13 @@
+Flask==0.10.1
+Jinja2==2.7.1
+MarkupSafe==0.18
+Werkzeug==0.9.4
+azure==0.7.0
+dribbble==0.2.3
+itsdangerous==0.23
+postmonkey==1.0b
+python-dateutil==2.1
+requests==1.2.3
+simplejson==3.3.0
+six==1.4.1
+wsgiref==0.1.2

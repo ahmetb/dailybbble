@@ -1,0 +1,32 @@
+body {
+    font-weight: 200;
+    padding-top: 3em;
+    padding-bottom: 5em;
+}
+
+h2, h3, h4, h5, h6 {
+    font-weight: 200;
+}
+
+.header {
+    margin-bottom: 1em;
+}
+
+.day {
+    padding-top: 1.5em;
+}
+
+.shot {
+    margin: 2em auto 0 auto;
+
+}
+
+.footer {
+    margin-top: 5em;
+    font-size: 90%;
+}
+
+.nav {
+    padding-top: 2em;
+    font-size: 120%;
+}

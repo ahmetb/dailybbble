@@ -1,0 +1,9 @@
+{%- macro shot_box(shot, is_big=True, row_count=3) %}
+    {% set grid_width = 12//row_count %}
+    {% set image = shot.image_url if is_big else shot.image_teaser_url %}
+    <div class='shot col-sm-{{grid_width}}' id='shot-{{shot.id}}'>
+        <a href='{{shot.short_url}}'>
+            <img class='img-thumbnail img-responsive' src='{{image}}'/>
+        </a>
+    </div><!-- .shot-{{shot.id}} -->
+{%- endmacro %}

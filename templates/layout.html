@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% from 'macros/shots_listing.html' import shots_listing %}
+
+{% block header %}
+<div class='header'>
+    <a href='{{url_for('home')}}' rel='home'><h1 class='site-logo text-muted'>Dailybbble</h1></a>
+</div>
+{% endblock %}
+
+
+{% block body %}
+    {% block content %}
+    <!-- filled by template page -->
+    {% endblock %}
+{% endblock %}
+
+
+{% block footer %}
+<div class="footer">
+    <p class='text-muted'>This site is not affiliated with Dribbble LLC. Brought you by
+    <a href='http://twitter.com/ahmetalpbalkan'>@ahmetAlpBalkan</a>.</p>
+</div>
+{% endblock %}
