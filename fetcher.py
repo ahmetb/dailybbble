@@ -19,8 +19,7 @@ def main():
             shots = service.get_popular_shots()
             for shot_resp in shots:
                 shot_model = model.shot_to_record(shot_resp)
-                print shot_model['created']
-                #database.upsert_shot(shot_model)
+                database.upsert_shot(shot_model)
             print '[{0}] Processed {1} posts.'.format(datetime.utcnow(), len(shots))
         except Exception as e:
             print '[{0}] Error: {1}'.format(datetime.utcnow(), e)
