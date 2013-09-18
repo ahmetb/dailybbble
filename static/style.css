@@ -15,7 +15,7 @@ h2, h3, h4, h5, h6 {
 }
 
 .page-header a {
-    color: inherit;
+    color: rgb(234, 76, 137);
 }
 
 .page-header a:hover {

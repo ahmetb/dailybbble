@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from dateutil import parser
-
+from pytz import UTC
 
 def shot_to_record(shot):
     """
@@ -14,8 +14,8 @@ def shot_to_record(shot):
 
     d = dict()
     d['id'] = shot['id']
-    d['created'] = parser.parse(shot['created_at']).isoformat()
-    d['created_day'] = str(parser.parse(shot['created_at']).date())
+    d['created'] = parser.parse(shot['created_at']).astimezone(UTC).isoformat()
+    d['created_day'] = str(parser.parse(shot['created_at']).astimezone(UTC).date())
     d['title'] = shot['title']
 
     d['url'] = shot['url']
