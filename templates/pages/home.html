@@ -6,7 +6,10 @@
 
 {% block content %}
     <p class='lead'>
-        <br/>Browse archives of popular shots on <a rel='nofollow' href='http://dribbble.com'>Dribbble</a>
+        <br/>Browse <a href='{{url_for('archive_month',
+                                year=today.year,
+                                month=today.month)}}'>archives</a>
+        of popular shots on <a rel='nofollow' href='http://dribbble.com'>Dribbble</a>
         on a particular day or month.
     </p>
 

@@ -11,6 +11,8 @@ from datetime import datetime
 Continuously running process for regularly downloading and saving shots
 """
 
+INTERVAL_SECS = 1* 60 * 60
+
 
 def main():
     database.create_initial_schema()
@@ -23,7 +25,7 @@ def main():
             print '[{0}] Processed {1} posts.'.format(datetime.utcnow(), len(shots))
         except Exception as e:
             print '[{0}] Error: {1}'.format(datetime.utcnow(), e)
-        time.sleep(1* 60 * 60)
+        time.sleep(INTERVAL_SECS)
 
 if __name__ == '__main__':
     main()

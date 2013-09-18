@@ -39,14 +39,12 @@
 
                 <td class='day text-center {%if disabled -%}disabled{%- endif -%} {%-if is_today -%}today{%- endif -%}'>
                     {%- if d != 0 -%}
-                    <div class='wrapper'>
                     <a href="{{url_for('archive_day',
                                 year=date.year,
                                 month=date.month,
                                 day=d)}}">
                     {{d}}
                     </a>
-                    </div><!-- // wrapper -->
                     {%- endif -%}
                 </td>
 

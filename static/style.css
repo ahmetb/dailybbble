@@ -71,21 +71,20 @@ time.day a {
     font-weight: lighter;
 }
 
-.calendar .day .wrapper {
-    width: 100%;
-    height: 100%;
-}
-
-.calendar .day.today .wrapper {
-    font-weight: bolder;
-}
-
 .calendar .day.disabled a {
     color: #ccc;
 }
 
 .calendar .day a:hover {
     text-decoration: none;
+}
+
+.shots .alert {
+    max-width: 880px;
+    font-size: 130%;
+    line-height: 130%;
+    margin-top: 2em;
+    font-weight: lighter;
 }
 
 .footer {

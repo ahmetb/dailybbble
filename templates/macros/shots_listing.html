@@ -17,7 +17,13 @@
         </div><!-- // row -->
     {%- endif -%}
 {%- else -%}
-
+    <div class="alert alert-info">
+        <p>
+            <i class='glyphicon glyphicon-eye-close'></i>
+            No shots have been discovered for this day yet. Check this page later
+            or browse a previous date.
+        </p>
+    </div>
 {%- endfor -%}
 </div><!-- // shots -->
 {%- endmacro -%}
