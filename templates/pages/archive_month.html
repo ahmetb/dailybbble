@@ -8,12 +8,12 @@
 <div class='month'>
         <h3>
             <i class='glyphicon glyphicon-time'></i> Time-travel to a day from <strong>
-                <time datetime='{{date}}'>{{date.strftime('%B %Y')}}</time>
+                <time datetime='{{date.strftime("%Y-%m")}}'>{{date.strftime('%B %Y')}}</time>
             </strong> on Dribbble:
         </h3>
 
         
-        <div class="calendar table-responsive clearfix">
+        <div class="calendar clearfix">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -59,17 +59,18 @@
 
             <div>
             {%- if prev -%}
-                <a class='btn btn-default btn-lg btn-success pull-left {%if prev_disabled %}disabled{% endif %}'
-                    href="{{url_for('archive_month', year=prev.year, month=prev.month)}}">
+                <a class='btn btn-default btn-lg btn-primary pull-left {%if prev_disabled %}disabled{% endif %}'
+                    href="{{url_for('archive_month', year=prev.year, month=prev.month)}}"
+                    {%if prev_disabled %}rel="nofollow"{% endif %}>
                     <i class='glyphicon glyphicon-arrow-left'></i>
-                    <nobr><time datetime='{{prev}}'>{{prev.strftime('%B %Y')}}</time></nobr>
+                    <nobr><time datetime='{{prev.strftime("%Y-%m")}}'>{{prev.strftime('%b %Y')}}</time></nobr>
                 </a>
             {%- endif -%}
 
             {%- if next -%}
-                <a class='btn btn-default btn-lg btn-success pull-right {%if next_disabled %}disabled{% endif %}'
+                <a class='btn btn-default btn-lg btn-primary pull-right {%if next_disabled %}disabled{% endif %}'
                     href="{{url_for('archive_month', year=next.year, month=next.month)}}">
-                    <nobr><time datetime='{{next}}'>{{next.strftime('%B %Y')}}</time></nobr>
+                    <nobr><time datetime='{{next.strftime("%Y-%m")}}'>{{next.strftime('%b %Y')}}</time></nobr>
                     <i class='glyphicon glyphicon-arrow-right'></i>
                 </a>
             {%- endif -%}

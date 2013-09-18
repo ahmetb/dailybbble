@@ -16,6 +16,8 @@
     {%- if (i-big_shots) % row_count == row_count-1 or i+1 == (shots|length) %}
         </div><!-- // row -->
     {%- endif -%}
+{%- else -%}
+
 {%- endfor -%}
 </div><!-- // shots -->
 {%- endmacro -%}

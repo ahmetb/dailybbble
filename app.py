@@ -23,6 +23,12 @@ def home():
 @app.route('/archive/<int:year>/<int:month>/<int:day>/')
 def archive_day(year, month, day):
     date = datetime.date(year, month, day)
+
+    if date < CALENDAR_START:
+        return redirect(url_for('archive_day', year=CALENDAR_START.year,
+                                month=CALENDAR_START.month,
+                                day=CALENDAR_START.day))
+
     shots = database.popular_shots_of_day(date, ARCHIVE_LISTING_SHOTS)
     return render_template('pages/archive_day.html', shots=shots,
                             day=date)
@@ -43,10 +49,16 @@ def archive_month(year, month):
     if date < calendar_start_month:
         return first_month_redir
 
+    today = datetime.datetime.utcnow().date()
+    if date > today:
+        return redirect(url_for('archive_month',
+                                year=today.year,
+                                month=today.month));
+
     cal = calendar.Calendar()
     days = list(cal.itermonthdays2(date.year, date.month))
 
-    today = datetime.datetime.utcnow().date()
+    
     prev = date - relativedelta(months=1)
     next = date + relativedelta(months=1)
     prev_disabled = prev < calendar_start_month

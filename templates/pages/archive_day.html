@@ -9,7 +9,7 @@
 <div class='day'>
         <h3>
             <i class='glyphicon glyphicon-time'></i> Popular shots of <strong>
-                <time datetime='{{day}}' class='day'>
+                <time datetime='day.strftime("%Y-%m-%d")' class='day'>
                     {{day.strftime('%A, %d')}}
                     <a href="{{url_for('archive_month', year=day.year, month=day.month)}}">
                         {{day.strftime('%B %Y')}}</a>
@@ -23,7 +23,7 @@
             <a class='btn btn-default btn-lg btn-primary pull-left'
                 href="{{url_for('archive_month', year=day.year, month=day.month)}}">
                 <i class='glyphicon glyphicon-arrow-left'></i>
-                Popular shots for <time datetime='{{day}}'>{{day.strftime('%b %Y')}}</time>
+                Popular shots for <time datetime='{{day.strftime("%Y-%m")}}'>{{day.strftime('%B %Y')}}</time>
             </a>
         </div><!-- // nav -->
 </div>

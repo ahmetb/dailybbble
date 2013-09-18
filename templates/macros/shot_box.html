@@ -2,21 +2,23 @@
     {% set grid_width = 12//row_count %}
     {% set image = shot.image_url if is_big else shot.image_teaser_url %}
     {% set size_class = 'big' if is_big else 'small' %}
-    <div class='shot shot-{{size_class}} col-sm-{{grid_width}}' id='shot-{{shot.id}}'>
+    <div class='shot shot-{{size_class}} col-sm-{{grid_width}} clearfix' id='shot-{{shot.id}}'>
         <a href='{{shot.url}}' title='{{ shot.title }} by {{shot.user_display_name }}'>
             <img class='img-thumbnail img-responsive' src='{{image}}'/>
         </a>
 
-        <div class='meta hidden-xs'>
+        <div class='meta {%if not is_big %}hidden-xs{% endif%}'>
             <p class='text-right'>
                 <span class='artist'>
                     <a href='{{shot.user_url}}' title='Go to user profile'>
                         <img src='{{ shot.user_avatar }}' class='avatar img'> {{ shot.user_display_name }}
                     </a>
                 </span>
-                <i class='glyphicon glyphicon-eye-open'></i>{{ shot.views }}
-                <i class='glyphicon glyphicon-comment'></i>{{ shot.comments }}
-                <i class='glyphicon glyphicon-heart'></i>{{ shot.likes }}
+                <nobr>
+                    <!-- <span class='hidden-sm'><i class='glyphicon glyphicon-eye-open'></i>{{ shot.views }}</span> -->
+                    <i class='glyphicon glyphicon-comment'></i>{{ shot.comments }}
+                    <i class='glyphicon glyphicon-heart'></i>{{ shot.likes }}
+                </nobr>
             </p>
         </div>
     </div><!-- //shot-{{shot.id}} -->

@@ -1,18 +1,24 @@
 body {
-    font-weight: 200;
-    padding-top: 1em;
-    padding-bottom: 5em;
+    padding-bottom: 3.6em;
+    line-height: 120%;
 }
 
 h2, h3, h4, h5, h6 {
+    line-height: 140%;
     font-weight: 200;
 }
 
-.header {
-    margin-bottom: 1em;
+.page-header h1 {
+    font-size: 300%;
+    font-weight: 100;
+    letter-spacing: 1px;
 }
 
-.header a:hover {
+.page-header a {
+    color: inherit;
+}
+
+.page-header a:hover {
     text-decoration: none;
 }
 
@@ -70,11 +76,8 @@ time.day a {
     height: 100%;
 }
 
-.calendar .day.today .wrapper a {
-    padding: 5px;
-    border-radius: 100px;
-    background-color: #428BCA;
-    color: white;
+.calendar .day.today .wrapper {
+    font-weight: bolder;
 }
 
 .calendar .day.disabled a {
@@ -86,7 +89,9 @@ time.day a {
 }
 
 .footer {
-    margin-top: 5em;
+    border-top: 1px solid #ddd;
+    padding-top: 2em;
+    margin-top: 4em;
     font-size: 90%;
 }
 
