@@ -5,9 +5,7 @@ import service
 import email
 from dateutil.relativedelta import relativedelta
 import calendar
-import os
-import requests
-from flask import render_template, redirect, url_for, request, abort
+from flask import render_template, redirect, url_for, request
 from dailybbble import app
 
 
