@@ -16,38 +16,80 @@
 
 
 <h2>API Endpoints</h2>
-<ul>
+<ol>
     <li>
-        1. Popular Dribbble shots of a day
+        Popular Dribbble shots of a day
     </li>
     <li>
-        2. Popular Dribbble shots of a month
+        Popular Dribbble shots of a month
     </li>
-</ul>
+</ol>
 
 <h3>1. Popular Dribbble shots of a day</h3>
 
 <dl class="dl-horizontal">
-  <dt>URI</dt>
-  <dd>
-    <code>{{ url_for('api_popular_day', _external=True, day='__day__') }}</code>
-  </dd>
+    <dt>URI</dt>
+    <dd>
+        <code>{{ url_for('api_popular_day', _external=True, day='__date__') }}</code>
+    </dd>
 
-  <dt>Method</dt>
-  <dd>
-    <code>GET</code>
-  </dd>
+    <dt>Method</dt>
+    <dd>
+     <code>GET</code>
+    </dd>
 
-  <dt>Parameters</dt>
-  <dd>
-    <ul>
-        <li>
-            <code>day</code>:
-            <code>today</code> or a date string in ISO 8601 pointing to a day. e.g.
-            <code>2013-06-30</code>.
-        </li>
-    </ul>
-  </dd>
+    <dt>Parameters</dt>
+    <dd>
+        <ul>
+            <li>
+                <code>__date__</code>:
+                <code>today</code> or a date string in ISO 8601 pointing to a day. e.g.
+                <code>2013-06-30</code>.
+            </li>
+        </ul>
+    </dd>
+
+    <dt>Remarks</dt>
+    <dd>
+        Provides popular shots sorted in descending order by likes in specified day.
+        Results may be cached, and thus may be stale in a time window of 1 hour.
+        Only first 20 results are returned. 
+    </dd>
 </dl>
+
+
+<h3>2. Popular Dribbble shots of a month</h3>
+
+<dl class="dl-horizontal">
+    <dt>URI</dt>
+    <dd>
+        <code>{{ url_for('api_popular_month', _external=True, month='__date__') }}</code>
+    </dd>
+
+    <dt>Method</dt>
+    <dd>
+        <code>GET</code>
+    </dd>
+
+    <dt>Parameters</dt>
+    <dd>
+        <ul>
+            <li>
+                <code>__date__</code>:
+                date string in ISO 8601 pointing to a month. e.g.
+                <code>2013-06</code>.
+            </li>
+        </ul>
+    </dd>
+
+    <dt>Remarks</dt>
+    <dd>
+        Provides popular shots sorted in descending order by likes in specified month.
+        Only shots with more than 50 likes appear in results. Only first 20 results are 
+        returned. Results may be cached, and thus may be stale in a time window of 1 hour.
+        <em>This request may take some time to complete.</em>
+    </dd>
+</dl>
+
 
 {% endblock %}
