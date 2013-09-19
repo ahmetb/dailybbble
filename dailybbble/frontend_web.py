@@ -17,7 +17,7 @@ CALENDAR_START = datetime.date(2013, 05, 30)
 @app.route('/')
 def home():
     today_utc = datetime.datetime.utcnow().date() - datetime.timedelta(days=1)
-    today_popular = service.popular_shots_of_day(today_utc, HOME_TODAY_SHOTS)
+    today_popular = []#service.popular_shots_of_day(today_utc, HOME_TODAY_SHOTS)
     return render_template('pages/home.html', today_popular=today_popular,
                            today=today_utc)
 
