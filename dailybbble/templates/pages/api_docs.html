@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{%- block title -%}
+    Dailybbble API
+{%- endblock -%}
+
+{% block content %}
+<h1>
+    <i class='glyphicon glyphicon-settings'></i>
+    Data API
+</h1>
+
+<p class='lead'>This is API is intended for those interested in building
+    applications on top of archives of Dailybbble
+</p>
+
+
+<h2>API Endpoints</h2>
+<ul>
+    <li>
+        1. Popular Dribbble shots of a day
+    </li>
+    <li>
+        2. Popular Dribbble shots of a month
+    </li>
+</ul>
+
+<h3>1. Popular Dribbble shots of a day</h3>
+
+<dl class="dl-horizontal">
+  <dt>URI</dt>
+  <dd>
+    <code>{{ url_for('api_popular_day', _external=True, day='__day__') }}</code>
+  </dd>
+
+  <dt>Method</dt>
+  <dd>
+    <code>GET</code>
+  </dd>
+
+  <dt>Parameters</dt>
+  <dd>
+    <ul>
+        <li>
+            <code>day</code>:
+            <code>today</code> or a date string in ISO 8601 pointing to a day. e.g.
+            <code>2013-06-30</code>.
+        </li>
+    </ul>
+  </dd>
+</dl>
+
+{% endblock %}

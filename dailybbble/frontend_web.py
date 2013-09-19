@@ -70,3 +70,8 @@ def archive_month(year, month):
                             prev=prev, prev_disabled=prev_disabled,
                             next=next, next_disabled=next_disabled,
                             today=today)
+
+
+@app.route('/api/documentation')
+def api_docs():
+    return render_template('pages/api_docs.html')
