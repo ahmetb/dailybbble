@@ -1,21 +1,23 @@
+# coding=utf-8
+
 import datetime
-import database
+import service
 from dateutil.relativedelta import relativedelta
 import calendar
 import os
-from flask import Flask, render_template, redirect, url_for
+from flask import render_template, redirect, url_for
+from dailybbble import app
 
 
 ARCHIVE_LISTING_SHOTS = 3*2 + 6*4
 HOME_TODAY_SHOTS = 6
 CALENDAR_START = datetime.date(2013, 05, 30)
-app = Flask(__name__)
 
 
 @app.route('/')
 def home():
     today_utc = datetime.datetime.utcnow().date() - datetime.timedelta(days=1)
-    today_popular = database.popular_shots_of_day(today_utc, HOME_TODAY_SHOTS)
+    today_popular = service.popular_shots_of_day(today_utc, HOME_TODAY_SHOTS)
     return render_template('pages/home.html', today_popular=today_popular,
                            today=today_utc)
 
@@ -29,7 +31,7 @@ def archive_day(year, month, day):
                                 month=CALENDAR_START.month,
                                 day=CALENDAR_START.day))
 
-    shots = database.popular_shots_of_day(date, ARCHIVE_LISTING_SHOTS)
+    shots = service.popular_shots_of_day(date, ARCHIVE_LISTING_SHOTS)
     return render_template('pages/archive_day.html', shots=shots,
                             day=date)
 
@@ -68,8 +70,3 @@ def archive_month(year, month):
                             prev=prev, prev_disabled=prev_disabled,
                             next=next, next_disabled=next_disabled,
                             today=today)
-
-if __name__ == '__main__':
-    port = int(os.environ['PORT']) if 'PORT' in os.environ else None
-    debug = True if not port else False
-    app.run(host='0.0.0.0', port=port, debug=debug)

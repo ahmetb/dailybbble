@@ -2,7 +2,7 @@
 # coding=utf-8
 
 import time
-import service
+import dribbble_service
 import database
 import model
 from datetime import datetime
@@ -18,7 +18,7 @@ def main():
     database.create_initial_schema()
     while True:
         try:
-            shots = service.get_popular_shots()
+            shots = dribbble_service.get_popular_shots()
             for shot_resp in shots:
                 shot_model = model.shot_to_record(shot_resp)
                 database.upsert_shot(shot_model)
