@@ -98,11 +98,6 @@ time.day a {
     font-size: 120%;
 }
 
-.SG_widget_form {
-    display: none; /* we never display sendgrid form */
-}
-
 form .help-block {
     font-size: 70%;
-    color: #ccc;
-}
+    color: #ccc; }

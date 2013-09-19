@@ -5,23 +5,33 @@
 {%- endblock -%}
 
 {% block content %}
-    <script type="text/javascript" src="http://sendgrid.com/newsletter/getSubscriptionWidget?p=gbcXZx0PJaTBc3E8NIgEoJYutY9GXEFJWPIYlciy9E%2BmbbPKpyMmErp1gU8qTvL0aa%2FfMh6c1FWIBAndQIMLT4RefifS%2BOhKVo53FsSPNcE%3D"> </script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('form.subscribe').attr('action', $('.SG_widget_form').attr('action'));
-            $('.SG_widget_form').remove();
-        });
-    </script>
-    <form class="subscribe form-inline" role="form" method="POST">
+
+    {% if subscribe -%}
+        {% if subscribe_success -%}
+            <div class='alert alert-success alert-dismissable'>
+                <p class='lead'>You have successfully subscribed to daily emails. Enjoy!</p>
+            </div>
+        {%- else -%}
+            <div class='alert alert-danger'>
+                <p class='lead'>Error while subscribing, check your e-mail address.</p>
+            </div>
+        {%- endif -%}
+    {%- endif -%}
+    {%- if not subscribe or subscribe_success == False -%}
+    <form class="subscribe form-inline" role="form" method="POST" accept-charset="UTF-8"
+        action='{{url_for('subscribe_form')}}'>
+
+        {%- if subscribe  -%}
         <p class='lead'>Get 6 most liked designs in your inbox every morning:</p>
+        {%- endif -%}
         <div class="form-group">
             <label class="sr-only" for="email">Email address</label>
-            <input type="email" class="form-control input-lg" name="SG_widget[email]" placeholder="Your email address">
+            <input type="email" class="form-control input-lg" name="email" placeholder="Your email address">
         </div>
         <button type="submit" class="btn btn-primary btn-lg">Subscribe <i class='glyphicon glyphicon-arrow-right'></i></button>
         <span class="help-block">You can unsubscribe any time, we do not spam.</span>
     </form>
+    {%- endif -%}
 
     <p class='lead'>
         <br/>Or you can <a href='{{url_for('archive_month',

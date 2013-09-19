@@ -2,10 +2,12 @@
 
 import datetime
 import service
+import email
 from dateutil.relativedelta import relativedelta
 import calendar
 import os
-from flask import render_template, redirect, url_for
+import requests
+from flask import render_template, redirect, url_for, request, abort
 from dailybbble import app
 
 
@@ -15,12 +17,25 @@ CALENDAR_START = datetime.date(2013, 05, 30)
 
 
 @app.route('/')
-def home():
+def home(subscribe=False, subscribe_success=True):
     today_utc = datetime.datetime.utcnow().date() - datetime.timedelta(days=1)
-    today_popular = []#service.popular_shots_of_day(today_utc, HOME_TODAY_SHOTS)
+    today_popular = service.popular_shots_of_day(today_utc, HOME_TODAY_SHOTS)
     return render_template('pages/home.html', today_popular=today_popular,
-                           today=today_utc)
+                           today=today_utc, subscribe=subscribe,
+                           subscribe_success=subscribe_success)
 
+@app.route('/subscribe', methods=['GET'])
+def subscribe():
+    return redirect(url_for('home'))
+
+@app.route('/subscribe', methods=['POST'])
+def subscribe_form():
+    addr = request.form.get('email', None)
+    if not addr:
+        subscribed = False
+    else:
+        subscribed = email.add_subscriber(addr)
+    return home(subscribe=True, subscribe_success=subscribed)
 
 @app.route('/archive/<int:year>/<int:month>/<int:day>/')
 def archive_day(year, month, day):
