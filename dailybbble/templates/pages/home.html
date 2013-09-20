@@ -21,7 +21,7 @@
     <form class="subscribe form-inline" role="form" method="POST" accept-charset="UTF-8"
         action='{{url_for('subscribe_form')}}'>
 
-        {%- if subscribe  -%}
+        {%- if not subscribe  -%}
         <p class='lead'>Get 6 most liked designs in your inbox every morning:</p>
         {%- endif -%}
         <div class="form-group">
