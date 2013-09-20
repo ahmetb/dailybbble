@@ -8,7 +8,7 @@ from dailybbble import app
 from flask import jsonify
 
 
-@app.route('/api/1/popular/day/<day>', methods = ['GET'])
+@app.route('/api/1/popular/day/<day>', methods = ['GET', 'HEAD'])
 def api_popular_day(day):
     if day == 'today':
         date = datetime.datetime.utcnow().date()
@@ -26,18 +26,17 @@ def api_popular_day(day):
         return render_api_error('Internal error occurred'), 500
     
 
-@app.route('/api/1/popular/month/<month>', methods = ['GET'])
+@app.route('/api/1/popular/month/<month>', methods = ['GET', 'HEAD'])
 def api_popular_month(month):
     try:
         y, m = month.split('-')
         if not y or not m:
             raise ValueError()
-        date = datetime.date(int(y), int(m), 1)
     except ValueError as e:
         return render_api_error('Invalid date format given.'), 400
 
     try:
-        shots = service.popular_shots_of_month(date, 20)
+        shots = service.popular_shots_of_month(y, m, 20)
         return render_api_result(shots), 200
     except Exception as e:
         print e

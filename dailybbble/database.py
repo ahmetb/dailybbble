@@ -83,21 +83,21 @@ def popular_shots_of_day(day, count=20):
     return __get_popular_shots(query, count)
 
 
-def popular_shots_of_month(date, count=20, min_likes=50):
+def popular_shots_of_month(year, month, count=20, min_likes=50):
     """Returns shot records list of a specified day (optionally of given max size)
     as dict
 
-    date: datetime.date of month requested (day field ignored)
     count: max shots to return after sorting by popularity
     min_likes: minimum likes (best-effort to workaround azure table response
         1000 rows limit in a single request)
     """
-    month_range = calendar.monthrange(date.year, date.month)
-    dt_start = datetime.date(date.year, date.month, 1)
-    dt_end = datetime.date(date.year, date.month, month_range[1])
+    month_range = calendar.monthrange(year, month)
+    dt_start = datetime.date(year, month, 1)
+    dt_end = datetime.date(year, month, month_range[1])
     query = "PartitionKey ge '{0}' and PartitionKey le '{1}' and likes gt {2}"\
             .format(dt_start,dt_end, min_likes)
     return __get_popular_shots(query, count)
+
 
 def __get_popular_shots(query_filter, count):
     """Queries shots from database from filter
