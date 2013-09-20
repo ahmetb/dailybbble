@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {%- block title -%}
-    Dailybbble | Archiving what is popular on Dribbble every day
+    Dailybbble - Delivering you Dribbble every morning
 {%- endblock -%}
 
 {% block content %}
@@ -9,11 +9,14 @@
     {% if subscribe -%}
         {% if subscribe_success -%}
             <div class='alert alert-success alert-dismissable'>
+                <i class='glyphicon glyphicon-ok-circle'></i>
                 <p class='lead'>You have successfully subscribed to daily emails. Enjoy!</p>
             </div>
         {%- else -%}
             <div class='alert alert-danger'>
-                <p class='lead'>Error while subscribing, check your e-mail address.</p>
+                <p class='lead'>
+                    <i class='glyphicon glyphicon-minus-sign'></i>
+                    Error while subscribing, check your e-mail address.</p>
             </div>
         {%- endif -%}
     {%- endif -%}
