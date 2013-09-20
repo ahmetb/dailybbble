@@ -6,6 +6,7 @@ azure==0.7.0
 dribbble==0.2.3
 itsdangerous==0.23
 postmonkey==1.0b
+pylibmc==1.2.3
 python-dateutil==2.1
 pytz==2013d
 requests==1.2.3
