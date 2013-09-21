@@ -50,7 +50,7 @@ def get_feed(url_home, url_day):
         item = {
             "title": "Popular designs of {0}".format(date.strftime("%b %d")),
             "link": url_day(date),
-            "pubDate": pubDate.timetuple(),
+            "pubDate": pubDate.astimezone(pytz.UTC).timetuple(),
             "guid": url_day(date),
             "description": render_template('feed/shots.html', shots=shots,
                                            date=date)
