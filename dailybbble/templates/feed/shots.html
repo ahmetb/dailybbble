@@ -1,0 +1,15 @@
+<p>Here is populars designs of {{date.strftime("%B %d")}} on Dribbble:</p>
+
+{%- for shot in shots -%}
+
+<p>
+    <a href='{{shot.url}}' title='{{ shot.title }} by {{shot.user_display_name }}'>
+        <img src='{{image}}'/>
+    </a>
+</p>
+
+{%- else -%}
+
+No designs have been recorded for today :(
+
+{%- endfor -%}

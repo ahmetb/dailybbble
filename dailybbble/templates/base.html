@@ -6,6 +6,9 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'style.css')}}" />
         {% block head %}{% endblock %}
+
+        <link href="{{url_for('rss2', _external=True)}}" type="application/rss+xml" rel="alternate" title="Dailybbble Popular Designs every day" />
+
     </head>
     <body>
         <div class='container'>

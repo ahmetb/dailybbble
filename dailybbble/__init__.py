@@ -7,4 +7,4 @@ app = Flask(__name__)
 
 # circular reference here, however, it is ok
 # http://flask.pocoo.org/docs/patterns/packages/
-from dailybbble import frontend_web, frontend_api
+from dailybbble import frontend_web, frontend_api, frontend_feed
