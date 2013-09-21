@@ -4,6 +4,7 @@ MarkupSafe==0.18
 Werkzeug==0.9.4
 azure==0.7.0
 dribbble==0.2.3
+feedformatter==0.4
 itsdangerous==0.23
 postmonkey==1.0b
 pylibmc==1.2.3
