@@ -40,14 +40,17 @@ def get_feed(url_home, url_day):
         if not shots: # skip the day if no shots are recorded
             continue
 
+        pubDate = datetime.datetime(date.year, date.month, date.day, 
+                                    POST_NEW_ITEM_AT.hour,
+                                    POST_NEW_ITEM_AT.minute,
+                                    POST_NEW_ITEM_AT.second,
+                                    tzinfo=tz)
+        pubDate = pubDate + datetime.timedelta(days=1)
+
         item = {
             "title": "Popular designs of {0}".format(date.strftime("%b %d")),
             "link": url_day(date),
-            "pubDate": datetime.datetime(date.year, date.month, date.day, 
-                                         POST_NEW_ITEM_AT.hour,
-                                         POST_NEW_ITEM_AT.minute,
-                                         POST_NEW_ITEM_AT.second,
-                                         tzinfo=tz).timetuple(),
+            "pubDate": pubDate.timetuple(),
             "guid": url_day(date),
             "description": render_template('feed/shots.html', shots=shots,
                                            date=date)
