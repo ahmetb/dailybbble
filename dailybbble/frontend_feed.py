@@ -17,4 +17,4 @@ def url_for_day(date):
 @app.route('/feed/rss.xml')
 def rss2():
     rss = feed.get_feed(url_home, url_for_day).format_rss2_string(pretty=True)
-    return Response(rss, mimetype='application/rss+xml')
+    return Response(rss, mimetype='text/xml')

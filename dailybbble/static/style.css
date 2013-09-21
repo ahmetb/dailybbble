@@ -26,6 +26,15 @@ time.day a {
     color: inherit;
 }
 
+
+mark {
+    background-color: #FDFFB6;
+    padding: 2px;
+    -webkit-box-shadow: #FDFFB6 0 0 5px;
+    -moz-box-shadow: #FDFFB6 0 0 5px;
+    box-shadow: #FDFFB6 0 0 5px;
+}
+
 .shot {
     margin: 2em auto 0.5em auto;
 }
@@ -100,4 +109,5 @@ time.day a {
 
 form .help-block {
     font-size: 70%;
-    color: #ccc; }
+    color: #ccc;
+}

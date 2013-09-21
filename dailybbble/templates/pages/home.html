@@ -25,7 +25,7 @@
         action='{{url_for('subscribe_form')}}'>
 
         {%- if not subscribe  -%}
-        <p class='lead'>Get 6 most liked designs in your inbox every morning:</p>
+        <p class='lead'>Get 6 most liked designs <mark>in your inbox every morning:</mark></p>
         {%- endif -%}
         <div class="form-group">
             <label class="sr-only" for="email">Email address</label>
@@ -41,7 +41,9 @@
                                 year=today.year,
                                 month=today.month)}}'>browse archives</a>
         of popular shots on <a rel='nofollow' href='http://dribbble.com'>Dribbble</a>
-        on a particular day or month. Or use <a href='{{url_for('api_docs')}}'>API</a> to build apps.
+        on a particular day or month. <br/>Or you can subscribe the 
+        <a href="{{url_for('rss2', _external=True)}}">daily RSS feed</a>
+        Or you can even use <a href='{{url_for('api_docs')}}'>API</a> to build apps.
     </p>
 
 
