@@ -3,7 +3,7 @@
 import datetime
 import service
 from feedformatter import Feed
-from pytz import timezone
+from pytz import timezone, UTC
 from flask import render_template
 
 
@@ -50,7 +50,7 @@ def get_feed(url_home, url_day):
         item = {
             "title": "Popular designs of {0}".format(date.strftime("%b %d")),
             "link": url_day(date),
-            "pubDate": pubDate.astimezone(pytz.UTC).timetuple(),
+            "pubDate": pubDate.astimezone(UTC).timetuple(),
             "guid": url_day(date),
             "description": render_template('feed/shots.html', shots=shots,
                                            date=date)
