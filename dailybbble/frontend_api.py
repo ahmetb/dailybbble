@@ -1,7 +1,7 @@
 # coding=utf-8
 
 import datetime
-import service
+from . import service
 import json
 from dateutil import parser
 from dailybbble import app

@@ -1,7 +1,7 @@
 # coding=utf-8
 
 import datetime
-import service
+from . import service
 from feedformatter import Feed
 from pytz import timezone, UTC
 from flask import render_template
@@ -33,7 +33,7 @@ def get_feed(url_home, url_day):
     if now.time() < POST_NEW_ITEM_AT:  # don't post today's item yet
         today = today - datetime.timedelta(days=1)
 
-    for i in range(1, DAYS_BACK+1):
+    for i in range(1, DAYS_BACK + 1):
         date = today - datetime.timedelta(days=i)
         shots = service.popular_shots_of_day(date, SHOTS_PER_DAY)
 

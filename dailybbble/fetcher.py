@@ -2,9 +2,9 @@
 # coding=utf-8
 
 import time
-import dribbble_service
-import database
-import model
+from . import dribbble_service
+from . import database
+from . import model
 from datetime import datetime
 
 """

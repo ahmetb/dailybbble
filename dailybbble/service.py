@@ -1,7 +1,7 @@
 # coding=utf-8
 
-import database
-import cache
+from . import database
+from . import cache
 
 """
 Provides information from database to front-end methods by adding a
@@ -22,7 +22,7 @@ def popular_shots_of_day(day, count):
     shots = database.popular_shots_of_day(day, count)
 
     if shots:
-        cache.set(cache_key, shots, CACHE_TTL_MINS*60)
+        cache.set(cache_key, shots, CACHE_TTL_MINS * 60)
     return shots
 
 
@@ -35,5 +35,5 @@ def popular_shots_of_month(year, month, count):
     shots = database.popular_shots_of_month(year, month, count)
 
     if shots:
-        cache.set(cache_key, shots, CACHE_TTL_MINS*60)
+        cache.set(cache_key, shots, CACHE_TTL_MINS * 60)
     return shots

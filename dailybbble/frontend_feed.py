@@ -2,11 +2,11 @@
 
 from dailybbble import app
 from flask import url_for, Response
-import feed
+from . import feed
 
 
 def url_home():
-    return url_for('home',  _external=True)
+    return url_for('home', _external=True)
 
 
 def url_for_day(date):

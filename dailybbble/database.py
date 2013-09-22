@@ -112,6 +112,6 @@ def __get_popular_shots(query_filter, count):
         del r['PartitionKey']
         del r['RowKey']
         del r['etag']
-    #TODO cache <query_filter:records> here
+    # TODO cache <query_filter:records> here
     records = sorted(records, key=lambda s: s['likes'], reverse=True)
     return records[:count]
