@@ -4,7 +4,7 @@ import dribbble
 
 
 def get_popular_shots():
-	resp = dribbble.shots('popular')()
+    resp = dribbble.shots('popular')()
 
-	if 'shots' in resp:
-		return resp['shots']
+    if 'shots' in resp:
+        return resp['shots']

@@ -3,6 +3,7 @@
 from dateutil import parser
 from pytz import UTC
 
+
 def shot_to_record(shot):
     """
     Returns dictionary for Azure Table record from shot dictionary from API
@@ -15,7 +16,8 @@ def shot_to_record(shot):
     d = dict()
     d['id'] = shot['id']
     d['created'] = parser.parse(shot['created_at']).astimezone(UTC).isoformat()
-    d['created_day'] = str(parser.parse(shot['created_at']).astimezone(UTC).date())
+    d['created_day'] = str(parser.parse(shot['created_at']).astimezone(UTC)
+                           .date())
     d['title'] = shot['title']
 
     d['url'] = shot['url']

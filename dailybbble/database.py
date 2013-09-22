@@ -9,6 +9,7 @@ import os
 """Persistence store implementation with Azure Table Storage
 """
 
+
 def __table_name():
     """Returns Azure storage table name from environment variable
     """
@@ -73,8 +74,8 @@ def update_shot(id, shot):
 
 
 def popular_shots_of_day(day, count=20):
-    """Returns shot records list of a specified day (optionally of given max size)
-    as dict
+    """Returns shot records list of a specified day (optionally of given max
+    size) as dict
 
     day: datetime.date of day requested
     count: max shots to return after sorting by popularity
@@ -85,8 +86,8 @@ def popular_shots_of_day(day, count=20):
 
 
 def popular_shots_of_month(year, month, count=20, min_likes=50):
-    """Returns shot records list of a specified day (optionally of given max size)
-    as dict
+    """Returns shot records list of a specified day (optionally of given max
+    size) as dict
 
     count: max shots to return after sorting by popularity
     min_likes: minimum likes (best-effort to workaround azure table response
@@ -96,7 +97,7 @@ def popular_shots_of_month(year, month, count=20, min_likes=50):
     dt_start = datetime.date(year, month, 1)
     dt_end = datetime.date(year, month, month_range[1])
     query = "PartitionKey ge '{0}' and PartitionKey le '{1}' and likes gt {2}"\
-            .format(dt_start,dt_end, min_likes)
+            .format(dt_start, dt_end, min_likes)
     return __get_popular_shots(query, count)
 
 
@@ -107,7 +108,7 @@ def __get_popular_shots(query_filter, count):
 
     records = __get_conn().query_entities(__table_name(), filter=query_filter)
     records = [r.__dict__ for r in records]
-    for r in records: # remove azure-table entity clutters
+    for r in records:  # remove azure-table entity clutters
         del r['PartitionKey']
         del r['RowKey']
         del r['etag']

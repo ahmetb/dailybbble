@@ -22,18 +22,18 @@ def home(subscribe=False, subscribe_success=True):
                            today=today_utc, subscribe=subscribe,
                            subscribe_success=subscribe_success)
 
+
 @app.route('/subscribe', methods=['GET'])
 def subscribe():
     return redirect(url_for('home'))
 
+
 @app.route('/subscribe', methods=['POST'])
 def subscribe_form():
     addr = request.form.get('email', None)
-    if not addr:
-        subscribed = False
-    else:
-        subscribed = email.add_subscriber(addr)
+    subscribed = email.add_subscriber(addr) if addr else False
     return home(subscribe=True, subscribe_success=subscribed)
+
 
 @app.route('/archive/<int:year>/<int:month>/<int:day>/')
 def archive_day(year, month, day):
@@ -46,17 +46,16 @@ def archive_day(year, month, day):
 
     shots = service.popular_shots_of_day(date, ARCHIVE_LISTING_SHOTS)
     return render_template('pages/archive_day.html', shots=shots,
-                            day=date)
+                           day=date)
 
 
 @app.route('/archive/<int:year>/<int:month>/')
 def archive_month(year, month):
     calendar_start_month = datetime.date(CALENDAR_START.year,
                                          CALENDAR_START.month, 1)
-    
     first_month_redir = redirect(url_for('archive_month',
-                                        year=CALENDAR_START.year,
-                                        month=CALENDAR_START.month));
+                                         year=CALENDAR_START.year,
+                                         month=CALENDAR_START.month))
     if year == 0 or month == 0:
         return first_month_redir
 
@@ -68,21 +67,20 @@ def archive_month(year, month):
     if date > today:
         return redirect(url_for('archive_month',
                                 year=today.year,
-                                month=today.month));
+                                month=today.month))
 
     cal = calendar.Calendar()
     days = list(cal.itermonthdays2(date.year, date.month))
 
-    
     prev = date - relativedelta(months=1)
     next = date + relativedelta(months=1)
     prev_disabled = prev < calendar_start_month
     next_disabled = next > today
 
     return render_template('pages/archive_month.html', date=date, days=days,
-                            prev=prev, prev_disabled=prev_disabled,
-                            next=next, next_disabled=next_disabled,
-                            today=today)
+                           prev=prev, prev_disabled=prev_disabled,
+                           next=next, next_disabled=next_disabled,
+                           today=today)
 
 
 @app.route('/api/documentation')

@@ -9,7 +9,7 @@ from flask import render_template
 
 DAYS_BACK = 3
 SHOTS_PER_DAY = 6
-POST_NEW_ITEM_AT = datetime.time(9, 00) # PST
+POST_NEW_ITEM_AT = datetime.time(9, 00)  # PST
 POST_NEW_ITEM_AT_TZ = 'US/Pacific'
 
 
@@ -30,17 +30,17 @@ def get_feed(url_home, url_day):
     now = datetime.datetime.now(tz)
     today = now.date()
 
-    if now.time() < POST_NEW_ITEM_AT: # don't post today's item yet
+    if now.time() < POST_NEW_ITEM_AT:  # don't post today's item yet
         today = today - datetime.timedelta(days=1)
 
     for i in range(1, DAYS_BACK+1):
         date = today - datetime.timedelta(days=i)
         shots = service.popular_shots_of_day(date, SHOTS_PER_DAY)
 
-        if not shots: # skip the day if no shots are recorded
+        if not shots:  # skip the day if no shots are recorded
             continue
 
-        pubDate = datetime.datetime(date.year, date.month, date.day, 
+        pubDate = datetime.datetime(date.year, date.month, date.day,
                                     POST_NEW_ITEM_AT.hour,
                                     POST_NEW_ITEM_AT.minute,
                                     POST_NEW_ITEM_AT.second,

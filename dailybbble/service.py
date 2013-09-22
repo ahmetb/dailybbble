@@ -8,6 +8,7 @@ Provides information from database to front-end methods by adding a
 caching layer
 """
 
+
 CACHE_TTL_MINS = 30
 
 
@@ -18,7 +19,7 @@ def popular_shots_of_day(day, count):
     if cached:
         return cached
 
-    shots =  database.popular_shots_of_day(day, count)
+    shots = database.popular_shots_of_day(day, count)
 
     if shots:
         cache.set(cache_key, shots, CACHE_TTL_MINS*60)

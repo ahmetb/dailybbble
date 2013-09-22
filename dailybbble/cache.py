@@ -18,14 +18,15 @@ def __get_client():
     env = os.environ
 
     if CACHE_SERVERS in env:
-        username = env[CACHE_USERNAME] if  CACHE_USERNAME in env else None
-        password = env[CACHE_PASSWORD] if  CACHE_PASSWORD in env else None
-        servers  = env[CACHE_SERVERS].split(CACHE_SERVERS_SEPARATOR)
-        return pylibmc.Client(servers ,username=username, password=password,
+        username = env[CACHE_USERNAME] if CACHE_USERNAME in env else None
+        password = env[CACHE_PASSWORD] if CACHE_PASSWORD in env else None
+        servers = env[CACHE_SERVERS].split(CACHE_SERVERS_SEPARATOR)
+        return pylibmc.Client(servers, username=username, password=password,
                               binary=True)
     else:
         # no environment config found
         return None
+
 
 def set(key, value, ttl_secs=0):
     """Sets key to value if cache client is configured.
@@ -40,6 +41,7 @@ def set(key, value, ttl_secs=0):
         except:
             return False
 
+
 def get(key):
     """Gets value of key if cache client is configured and key exists
     as non-expired. Does not throw error upon cache service failures.
@@ -53,4 +55,3 @@ def get(key):
             return c.get(key)
         except:
             return None
-

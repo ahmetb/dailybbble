@@ -8,7 +8,7 @@ from dailybbble import app
 from flask import jsonify
 
 
-@app.route('/api/1/popular/day/<day>', methods = ['GET', 'HEAD'])
+@app.route('/api/1/popular/day/<day>', methods=['GET', 'HEAD'])
 def api_popular_day(day):
     if day == 'today':
         date = datetime.datetime.utcnow().date()
@@ -24,9 +24,9 @@ def api_popular_day(day):
     except Exception as e:
         print e
         return render_api_error('Internal error occurred'), 500
-    
 
-@app.route('/api/1/popular/month/<month>', methods = ['GET', 'HEAD'])
+
+@app.route('/api/1/popular/month/<month>', methods=['GET', 'HEAD'])
 def api_popular_month(month):
     try:
         y, m = month.split('-')
@@ -55,8 +55,10 @@ def render_api_result(result_object):
 
 def render_api_error(error_message, error_type=None, error_code=None):
     error = {'message': error_message}
-    if error_type: error['type'] = error_type
-    if error_code: error['code'] = error_code
+    if error_type:
+        error['type'] = error_type
+    if error_code:
+        error['code'] = error_code
 
     resp = base_api_response()
     resp['error'] = error

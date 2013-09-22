@@ -11,7 +11,7 @@ def url_home():
 
 def url_for_day(date):
     return url_for('archive_day', year=date.year, month=date.month,
-                             day=date.day, _external=True)
+                   day=date.day, _external=True)
 
 
 @app.route('/feed/rss.xml')
