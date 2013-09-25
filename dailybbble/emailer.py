@@ -17,6 +17,7 @@ once every week.
 
 SHOTS_DAILY_MODE = 6
 SHOTS_WEEKLY_MODE = 10
+MIN_LIKES_WEEKLY_MODE = 50
 
 
 def main():
@@ -76,7 +77,11 @@ def shots_for_mode(mode):
         yesterday = datetime.utcnow().date() - timedelta(days=1)
         return service.popular_shots_of_day(yesterday, SHOTS_DAILY_MODE)
     elif mode == email.WEEKLY_OPTION:
-        raise Exception('Not implemented yet')  # TODO implement service
+        yesterday = datetime.utcnow().date() - timedelta(days=1)
+        date_start = yesterday - timedelta(days=7)
+        return service.popular_shots_in_range(date_start, yesterday,
+                                              SHOTS_WEEKLY_MODE,
+                                              MIN_LIKES_WEEKLY_MODE)
     else:
         raise Exception('Unsupported email mode: "{0}"'.format(mode))
 
@@ -103,7 +108,7 @@ def email_subject_for_mode(mode, date):
     if mode == email.DAILY_OPTION:
         return 'Popular designs of {0}'.format(date.strftime('%b %d, %A'))
     else:
-        raise Exception('Not implemented yet')  # TODO implement service
+        return 'Popular designs last week ({0})'.format(date.strftime("%b %d"))
 
 
 def print_usage():

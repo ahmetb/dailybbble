@@ -93,11 +93,24 @@ def popular_shots_of_month(year, month, count=20, min_likes=50):
     min_likes: minimum likes (best-effort to workaround azure table response
         1000 rows limit in a single request)
     """
+
     month_range = calendar.monthrange(year, month)
     dt_start = datetime.date(year, month, 1)
     dt_end = datetime.date(year, month, month_range[1])
-    query = "PartitionKey ge '{0}' and PartitionKey le '{1}' and likes gt {2}"\
-            .format(dt_start, dt_end, min_likes)
+    return popular_shots_in_range(dt_start, dt_end, count, min_likes)
+
+
+def popular_shots_in_range(date_start, date_end, count=20, min_likes=0):
+    """gets popular shots in given range sorted by popularity by likes
+    Note: if there are >1000 records in given range, returned results
+    are not consistent at all
+
+    date_start: lower bound (inclusive)
+    date_end: higher bound (inclusive)
+    """
+
+    query = "PartitionKey ge '{0}' and PartitionKey le '{1}' and likes ge {2}"\
+            .format(date_start, date_end, min_likes)
     return __get_popular_shots(query, count)
 
 
@@ -112,6 +125,5 @@ def __get_popular_shots(query_filter, count):
         del r['PartitionKey']
         del r['RowKey']
         del r['etag']
-    # TODO cache <query_filter:records> here
     records = sorted(records, key=lambda s: s['likes'], reverse=True)
     return records[:count]
