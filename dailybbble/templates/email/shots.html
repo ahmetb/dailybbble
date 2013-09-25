@@ -1,0 +1,23 @@
+<small><a href="[weblink]">View this email in your browser</a></small>
+
+{%- for shot in shots -%}
+
+<p>
+    <a href="{{shot.url}}" title="{{ shot.title }} by {{shot.user_display_name }}">
+        <img src="{{shot.image_url}}">
+    </a>
+</p>
+
+{%- else -%}
+
+No designs have been recorded for this day :(
+
+{%- endfor -%}
+
+<p>
+--<br/>
+<small>
+    Remember, you can always <a href="[unsubscribe]">unsubscribe</a>
+    from these emails.
+</small>
+</p>

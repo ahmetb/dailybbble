@@ -1,0 +1,19 @@
+(View this email in your browser: [weblink])
+
+Popular shots on Dribbble:
+
+{% for shot in shots %}
+
+*   {{ shot.title }} by {{shot.user_display_name }}
+    {{shot.url}}
+
+{% else %}
+
+No designs have been recorded for this day :(
+Look forward to next emails!
+
+{% endfor %}
+
+
+--
+If you wish to unsubscribe from these emails, click: [unsubscribe]

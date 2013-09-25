@@ -13,6 +13,12 @@ Crawler runs as an executable Python daemon at file `fetcher.py`. It runs
 continuously to retrieve data from Dribbble. You can use `supervisor` to
 keep this process alive.
 
+In addition you can send daily/weekly emails newsletters by scheduling
+cronjobs (one runs every morning, one every Saturday noon) with commands
+
+    python -m dailybbble.emailer daily
+    python -m dailybbble.emailer weekly
+
 ## Installation
 
 Windows Azure Table Storage is used as database. Therefore you need to 
@@ -27,7 +33,10 @@ are needed from [SendGrid][sendgrid] service:
 
 * `SENDGRID_USERNAME`: account or API user name as in [https://sendgrid.com/credentials](https://sendgrid.com/credentials)
 * `SENDGRID_PASSWORD`: account password or API key
-* `SENDGRID_LIST_NAME`: name of the recipient list for subscribed people
+* `SENDGRID_LIST_NAMES`: comma separated names of 2 recipient lists for daily
+and weekly subscriptions (better you don't use commas while creating list
+names)
+* `SENDGRID_SENDER_NAME`: identity name of registered sender
 
 For making use of `memcache` caching, configure the following
 environment variables (auto-installed with Heroku Memcachier plugin):
