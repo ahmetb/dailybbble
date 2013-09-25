@@ -5,7 +5,7 @@ from . import service
 from . import email
 from dateutil.relativedelta import relativedelta
 import calendar
-from flask import render_template, redirect, url_for, request, abort
+from flask import render_template, redirect, url_for, request
 from dailybbble import app
 
 
@@ -39,8 +39,7 @@ def subscribe_form():
     elif mode == email.WEEKLY_OPTION:
         list_name = lists[1]
     else:
-        return abort('Invalid subscription type'), 400
-    print list_name, addr
+        return 'Invalid subscription type.', 400
     subscribed = email.add_subscriber(addr, list_name) if addr else False
     return home(subscribe=True, subscribe_success=subscribed)
 
