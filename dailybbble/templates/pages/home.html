@@ -11,7 +11,7 @@
             <div class='alert alert-success alert-dismissable'>
                 <p class='lead'>
                     <i class='glyphicon glyphicon-ok-circle'></i>
-                    You have successfully subscribed to daily emails. Enjoy!</p>
+                    You have successfully subscribed to the newsletter. Enjoy!</p>
             </div>
         {%- else -%}
             <div class='alert alert-danger'>
@@ -30,7 +30,15 @@
         {%- endif -%}
         <div class="form-group">
             <label class="sr-only" for="email">Email address</label>
-            <input type="email" class="form-control input-lg" name="email" placeholder="Your email address">
+            <input type="email" class="form-control input-lg" name="email"
+                placeholder="Your email address">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="mode">Subscription type</label>
+            <select class="form-control input-lg" name="mode">
+              <option value="daily">every morning</option>
+              <option value="weekly">every Saturday</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary btn-lg">Subscribe <i class='glyphicon glyphicon-arrow-right'></i></button>
         <span class="help-block">You can unsubscribe any time, we do not spam.</span>
@@ -38,13 +46,13 @@
     {%- endif -%}
 
     <p class='lead'>
-        <br/>Or you can <a href='{{url_for('archive_month',
+        <br/><a href='{{url_for('archive_month',
                                 year=today.year,
-                                month=today.month)}}'>browse archives</a>
+                                month=today.month)}}'>Browse archives</a>
         of popular shots on <a rel='nofollow' href='http://dribbble.com'>Dribbble</a>
-        on a particular day or month. <br/>Or you can subscribe the 
-        <a href="{{url_for('rss2', _external=True)}}">daily RSS feed</a>
-        Or you can even use <a href='{{url_for('api_docs')}}'>API</a> to build apps.
+        on a particular day or month. <br/>Subscribe the 
+        <a href="{{url_for('rss2', _external=True)}}">daily RSS feed</a>.
+        Use <a href='{{url_for('api_docs')}}'>API</a> to build apps.
     </p>
 
 

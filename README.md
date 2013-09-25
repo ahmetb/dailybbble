@@ -6,7 +6,7 @@ daily newsletters.
 
 ## Introduction
 
-The web interface runs at [dailybbble.herokuapp.com](http://dailybbble.herokuapp.com).
+The web interface runs at [dailybbble.herokuapp.com][home]
 on Heroku platform.
 
 Crawler runs as an executable Python daemon at file `fetcher.py`. It runs
@@ -67,3 +67,4 @@ Copyright 2013, Ahmet Alp Balkan
 
 [dribbble]: http://dribbble.com
 [sendgrid]: http://sendgrid.com
+[home]: http://dailybbble.herokuapp.com

@@ -51,12 +51,11 @@ def get_sender_identity():
     return env[ENV_SENDGRID_SENDER_NAME]
 
 
-def add_subscriber(email):
-    """adds subscriber to list configured in env var SENDGRID_LIST_NAME
-    True if successful or user already subscribed, False otherwise
+def add_subscriber(email, list_name):
+    """adds subscriber to specified list name (as appears in SendGrid website)
+    True if successful (or user already subscribed), False otherwise
     """
     username, password = get_api_credentials()
-    list_name = get_email_list_name()
     data = json.dumps({'email': email, 'name': None})
     params = {'api_user': username, 'api_key': password, 'list': list_name,
               'data': data}

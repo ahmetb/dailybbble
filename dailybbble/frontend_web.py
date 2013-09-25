@@ -5,7 +5,7 @@ from . import service
 from . import email
 from dateutil.relativedelta import relativedelta
 import calendar
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, abort
 from dailybbble import app
 
 
@@ -31,7 +31,17 @@ def subscribe():
 @app.route('/subscribe', methods=['POST'])
 def subscribe_form():
     addr = request.form.get('email', None)
-    subscribed = email.add_subscriber(addr) if addr else False
+    mode = request.form.get('mode', email.DAILY_OPTION)
+
+    lists = email.get_email_list_names()
+    if mode == email.DAILY_OPTION:
+        list_name = lists[0]
+    elif mode == email.WEEKLY_OPTION:
+        list_name = lists[1]
+    else:
+        return abort('Invalid subscription type'), 400
+    print list_name, addr
+    subscribed = email.add_subscriber(addr, list_name) if addr else False
     return home(subscribe=True, subscribe_success=subscribed)
 
 
