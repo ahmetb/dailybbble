@@ -4,6 +4,7 @@ This project crawls [Dribbble][dribbble] continuously to keep record of popular
 designs and archive them by day. It also offers them over an API, RSS and 
 daily newsletters.
 
+
 ## Introduction
 
 The web interface runs at [dailybbble.herokuapp.com][home]
@@ -14,10 +15,13 @@ continuously to retrieve data from Dribbble. You can use `supervisor` to
 keep this process alive.
 
 In addition you can send daily/weekly emails newsletters by scheduling
-cronjobs (one runs every morning, one every Saturday noon) with commands
+cron jobs (one runs every morning, one every Saturday noon) with commands
 
     python -m dailybbble.emailer daily
     python -m dailybbble.emailer weekly
+
+See notes below installing these tasks on Heroku Scheduler.
+
 
 ## Installation
 
@@ -49,6 +53,23 @@ You can use `$ heroku config:set KEY=VALUE` to persistently set environment
 on Heroku app.
 
 
+### Scheduling Emailer Tasks on Heroku
+
+For using [Heroku Scheduler][heroku-scheduler] addon, here's the configuration:
+
+    Daily emails: every day at 9 AM PST:
+    Task: python -m dailybbble.emailer daily
+    Frequency: Daily
+    Next Run: 16:00 UTC
+
+    Weekly emails: every Saturday at 11 AM PST:
+    Task: ruby -e 'if Time.now.utc.wday != 6; exit 1; end' && python -m dailybbble.emailer weekly
+    Frequency: Daily
+    Next Run: 18:00 UTC
+
+(To run scheduler dashboard, run `heroku addons:open scheduler`.)
+
+
 ## License
 
 Copyright 2013, Ahmet Alp Balkan
@@ -68,3 +89,4 @@ Copyright 2013, Ahmet Alp Balkan
 [dribbble]: http://dribbble.com
 [sendgrid]: http://sendgrid.com
 [home]: http://dailybbble.herokuapp.com
+[heroku-scheduler]: https://devcenter.heroku.com/articles/scheduler

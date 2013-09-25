@@ -40,6 +40,11 @@ def main():
     email_name = 'Dailybbble-{0}-{1}-{2}'.format(opt, today, unique_id)
     subject = email_subject_for_mode(opt, yesterday)
     shots = shots_for_mode(opt)
+
+    if not shots:
+        print 'No shots have been found in given time, not sending email'
+        sys.exit(1)
+
     email_html, email_txt = email_body(opt, shots)
 
     success = True

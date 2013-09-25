@@ -7,11 +7,6 @@ Popular shots on Dribbble:
 *   {{ shot.title }} by {{shot.user_display_name }}
     {{shot.url}}
 
-{% else %}
-
-No designs have been recorded for this day :(
-Look forward to next emails!
-
 {% endfor %}
 
 
