@@ -30,7 +30,7 @@ initialize enviornment variables
 
 * `AZURE_ACCOUNT_NAME`
 * `AZURE_ACCOUNT_KEY`
-* `AZURE_TABLEN_NAME` where shots are stored.
+* `AZURE_TABLE_NAME` where shots are stored.
 
 In addition, for e-mail subscription the following environment variables
 are needed from [SendGrid][sendgrid] service:
