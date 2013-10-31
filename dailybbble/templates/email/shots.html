@@ -10,6 +10,14 @@
 
 {%- endfor -%}
 
+{%- if mode == 'daily' -%}
+<p>
+    <a href="http://dailybbble.herokuapp.com/archive/{{yesterday.year}}/{{yesterday.month}}/{{yesterday.day}}/">
+    View more of yesterday's populars on Dailybbble website &rarr;
+    </a>
+</p>
+{%- endif -%}
+
 <p>
 --<br/>
 <small>

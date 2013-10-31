@@ -97,11 +97,13 @@ def email_body(mode, shots):
 
     return: (html, text)
     """
-    templates = list(email_templates_for_mode(mode))
-    return tuple(map(lambda tpl: tpl.render(shots=shots), templates))
+    templates = list(email_templates())
+    return tuple(map(lambda tpl: tpl.render(shots=shots, mode=mode,
+                     yesterday=datetime.utcnow().date() - timedelta(days=1)),
+                 templates))
 
 
-def email_templates_for_mode(mode):
+def email_templates():
     """provides unrendered templates for emails
     return: (htmlTemplate, plainTextTemplate)
     """
