@@ -6,7 +6,8 @@
 
 {% block content %}
 
-    {% if subscribe -%}
+    {% if not disable_email %}
+    {%- if subscribe -%}
         {% if subscribe_success -%}
             <div class='alert alert-success alert-dismissable'>
                 <p class='lead'>
@@ -60,6 +61,7 @@
         <button type="submit" class="btn btn-primary btn-lg">Subscribe <i class='glyphicon glyphicon-arrow-right'></i></button>
         <span class="help-block">You can unsubscribe any time, we do not spam.</span>
     </form>
+    {%- endif -%}
     {%- endif -%}
 
     <p class='lead'>

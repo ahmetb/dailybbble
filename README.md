@@ -42,6 +42,11 @@ and weekly subscriptions (better you don't use commas while creating list
 names)
 * `SENDGRID_SENDER_NAME`: identity name of registered sender
 
+To disable email sending (for instance if you ran out of money recently
+like I did), set environment variable:
+
+* `DISABLE_EMAIL`: to `1` and it will be hidden from the UI.
+
 For making use of `memcache` caching, configure the following
 environment variables (auto-installed with Heroku Memcachier plugin):
 

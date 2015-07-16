@@ -3,6 +3,7 @@
 import datetime
 from . import service
 from . import email
+from os import environ
 from dateutil.relativedelta import relativedelta
 import calendar
 from flask import render_template, redirect, url_for, request
@@ -12,7 +13,10 @@ from dailybbble import app
 ARCHIVE_LISTING_SHOTS = 3 * 2 + 6 * 4
 HOME_TODAY_SHOTS = 6
 CALENDAR_START = datetime.date(2013, 0o5, 30)
+DISABLE_EMAIL='DISABLE_EMAIL'
 
+def is_email_disabled():
+    return DISABLE_EMAIL in environ and environ[DISABLE_EMAIL] == '1'
 
 @app.route('/')
 def home(subscribe=False, subscribe_success=True):
@@ -20,7 +24,8 @@ def home(subscribe=False, subscribe_success=True):
     today_popular = service.popular_shots_of_day(today_utc, HOME_TODAY_SHOTS)
     return render_template('pages/home.html', today_popular=today_popular,
                            today=today_utc, subscribe=subscribe,
-                           subscribe_success=subscribe_success)
+                           subscribe_success=subscribe_success,
+                           disable_email=is_email_disabled())
 
 
 @app.route('/subscribe', methods=['GET'])
@@ -30,6 +35,9 @@ def subscribe():
 
 @app.route('/subscribe', methods=['POST'])
 def subscribe_form():
+    if is_email_disabled():
+        return 'Email subscription is disabled', 400
+
     addr = request.form.get('email', None)
     mode = request.form.get('mode', email.DAILY_OPTION)
 
