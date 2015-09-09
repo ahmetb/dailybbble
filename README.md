@@ -25,12 +25,34 @@ See notes below installing these tasks on Heroku Scheduler.
 
 ## Installation
 
-Windows Azure Table Storage is used as database. Therefore you need to 
+Microsoft Azure Table Storage is used as database. Therefore you need to 
 initialize enviornment variables
 
 * `AZURE_ACCOUNT_NAME`
 * `AZURE_ACCOUNT_KEY`
-* `AZURE_TABLE_NAME` where shots are stored.
+* `AZURE_TABLE_NAME` (where shots are going to be stored)
+
+### 1. Deploying the fetcher
+
+Build the Docker image:
+
+    $ docker build -t dailybbble-fetcher -f Dockerfile-fetcher .
+
+Run the container:
+
+```
+$ docker run -d --restart=always \
+    -e AZURE_ACCOUNT_NAME='<paste_account_here>' \
+    -e AZURE_TABLE_NAME='dailybbble' \
+    -e AZURE_ACCOUNT_KEY='<paste_key_here>'
+    --name dailybbble_crawler \
+    dailybbble-fetcher
+```
+
+Check if it is running: `docker logs -f dailybbble_crawler`.
+
+### 2. Deploying the server
+
 
 In addition, for e-mail subscription the following environment variables
 are needed from [SendGrid][sendgrid] service:
